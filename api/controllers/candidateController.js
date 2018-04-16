@@ -1,26 +1,30 @@
 const mongoose = require('mongoose'); 
 
-const Offers = require('./../model/offersmodel');
-const Companies = require('./../model/companymodel');
+const Candidates = require('./../model/candidatemodel');
 
 
 exports.getAllcandidate =(req, res, next) =>{
 
-    Offers.find()
-    .select('_id, company, salary, bonses')
+    Candidates.find()
     .exec()
     .then(data=>{
         const respose ={
             count: data.length,
-            offers: data.map(offer =>{
+            candidates: data.map(candidate =>{
                 return{
-                    _id: offer._id, 
-                    company: offer.company, 
-                    salary: offer.salary, 
-                    bonses: offer.bonses,
+                    _id: candidate._id, 
+                    account: candidate.account, 
+                    salary: candidate.salary, 
+                    headline: candidate.headline,
+                    topSkills: candidate.topSkills, 
+                    skill: candidate.skills, 
+                    benefits: candidate.benefits,
+                    workExperiences: candidate.workExperiences,
+                    projectExperiences: candidate.projectExperiences,
+                    educations: candidate.educations, 
                     request: {
                         type: 'GET', 
-                        url: 'http://localhost:8080/offers/' + offer._id
+                        url: 'http://localhost:8080/candidates/' + candidate._id
                     }
                 }
             })
@@ -35,14 +39,14 @@ exports.getAllcandidate =(req, res, next) =>{
   
 }
 
-exports.getOneOffer = (req, res, next) =>{
-    offerId = req.params.id; 
-    Offers.findById(offerId)
+exports.getOneCandidate = (req, res, next) =>{
+    candidateId = req.params.id; 
+    Candidates.findById(candidateId)
     .exec()
     .then(data=>{
         res.status(200).json({
-            message: 'This is company offer', 
-            
+            message: 'User profile', 
+            profile: data     
         });
     })
     .catch(err =>{
@@ -54,28 +58,32 @@ exports.getOneOffer = (req, res, next) =>{
 }
 
 
-exports.createOffers =(req, res, next) => {
- // check if company is existed,
- //if not break the function 
-    const offer = new Offers({
+exports.createCandidate =(req, res, next) => {
+    const candidate = new Candidates({
     _id: mongoose.Types.ObjectId(),
-    company: req.body.company,
-    salary: req.body.salary, 
-    bonses : req.body.bonses
+    account: req.body.candidate.account, 
+    salary: req.body.candidate.salary,
+    headline: req.body.candidate.headline,
+    topSkills: req.body.candidate.topSkills, 
+    skills: req.body.candidate.skills, 
+    benefits: req.body.candidate.benefits,
+   // publishInfo: req.body.candidate.publishInfo,
+    workExperiences: req.body.candidate.workExperiences,
+    projectExperiences: req.body.candidate.projectExperiences,
+    educations: req.body.candidate.educations
     })
-     offer.save()
+     candidate.save()
      .then(result => {
           console.log(result);
         res.status(201).json({
-        message: "Offer stored",
-        createdOrder: {
+        message: "new candidate is created",
+        createdCandidate: {
           _id: result._id,
-          salary: result.product,
-          bonses: result.quantity
+          account: result.account, 
         },
         request: {
           type: "GET",
-          url: "http://localhost:8080/offers/" + result._id
+          url: "http://localhost:8080/candidates/" + result._id
         }
       });
     })
@@ -89,12 +97,9 @@ exports.createOffers =(req, res, next) => {
 
 
 
-
-
-
-exports.deleteOffers =(req, res, next) =>{
-    offerId = req.params.id; 
-    Offers.remove({_id: offerId})
+exports.deleteCandidate =(req, res, next) =>{
+    candidateId = req.params.id; 
+    Candidates.remove({_id: candidateId})
     .exec()
     .then(data=>{
         res.status(200).json(data);
@@ -107,13 +112,17 @@ exports.deleteOffers =(req, res, next) =>{
 
 }
 
-exports.updateOffers =(req, res, next)=>{
-    offerId = req.params.id; 
+exports.updateCandidate =(req, res, next)=>{
+    candidateId = req.params.id; 
     const updateOps = {}; 
-    Offers.update({_id: offerId}, {$set: {
-        company: req.body.company,
-        salary: req.body.salary, 
-        bonses: req.body.bonses
+    Offers.update({_id: candidateId}, {$set: {
+        account: req.body.candidate.account, 
+        topSkills: req.body.candidate.topSkills, 
+        skill: req.body.candidate.skills, 
+        benefits: req.body.candidate.benefits,
+        publishInfo: req.body.candidate.publishInfo,
+        workExperiences: req.body.candidate.workExperiences,
+        education: req.body.candidate.education
     }})
     .exec()
     .then(data=>{

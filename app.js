@@ -2,7 +2,7 @@ const express = require('express');
 const app = express(); 
 const morgon = require('morgan');
 const users = require('./api/routes/users'); 
-const candidates = require('./api/routes/candidate')
+const candidates = require('./api/routes/candidates')
 const offers = require('./api/routes/offers')
 const companies = require('./api/routes/companies')
 const bodyparser = require('body-parser')
@@ -27,7 +27,7 @@ app.use((req, res, next) =>{
 
 
 app.use('/users', users); 
-app.use('/candidate', candidates); 
+app.use('/candidates', candidates); 
 app.use('/offers', offers); 
 app.use('/companies', companies)
 
