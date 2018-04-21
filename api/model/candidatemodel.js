@@ -2,6 +2,17 @@ const mongoose = require('mongoose');
 
 const candidateSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
+    date: { type: Date},
+    city: {type: String}, 
+    publishStatus: [
+    {
+        auctionId: mongoose.Schema.Types.ObjectId,
+        status: Number, 
+      userId : {
+          type: mongoose.Schema.Types.ObjectId, ref: 'User'  
+        }
+    }], 
+    userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}, 
     account: {
         firstname: {type: String},
         lastname: {type: String},
@@ -9,8 +20,7 @@ const candidateSchema = mongoose.Schema({
                type: String, 
            },
          phone: {type: String}, 
-      //  userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}, 
-    
+   
     }, 
     salary: {
         type: Number

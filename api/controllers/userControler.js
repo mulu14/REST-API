@@ -24,6 +24,8 @@ exports.user_sign_up = (req, res, next) =>{
                 else{
                     const user = new User({
                         _id: new mongoose.Types.ObjectId(),
+                        firstName: req.body.firstName, 
+                        lastName: req.body.lastName,
                         email: req.body.email,
                         password: hash
                     }); 
@@ -98,7 +100,9 @@ exports.get_all_users = (req, res, next) =>{
             count: data.length,
             users: data.map(user =>{
                 return{
-                    email: user.email, 
+                    firstName: user.firstName, 
+                    lastName: user.lastName,
+                     email: user.email, 
                     _id: user._id, 
                     request: {
                         type: 'GET', 

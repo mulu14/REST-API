@@ -5,6 +5,7 @@ const Companies = require('./../model/companymodel');
 exports.company_create = (req, res, next) =>{
     const company = new Companies({
         _id: new mongoose.Types.ObjectId(),
+        date: new Date(),
         name: req.body.company.name,
         email: req.body.company.email,
         phone: req.body.company.phone, 
@@ -42,6 +43,8 @@ exports.get_list_of_company = (req, res, next) =>{
                 return{
                     _id: company._id, 
                     nameOfCompany: company.nameOfCompany,
+                    date: company.date.toISOString().split('T')[0],
+                    publishd: company.publishd,
                     benefitsOffers: company.benefitsOffers, 
                     intrestfromCandidates: company.intrestfromCandidates, 
                     image: company.image, 

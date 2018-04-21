@@ -7,84 +7,78 @@ const companiesSchema = mongoose.Schema({
     phone: {type: Number}, 
     nameOfCompany: {type: String}, 
     publishd: {type: Boolean},
+    date: {type: Boolean}, 
     benefitsOffers: [
         {
-        balance : Boolean 
+        balance : Boolean
         },
          {
-             car: Boolean 
+        car: Boolean
         },
-
         {
-           bonseModel: Boolean  
-            
+        bonseModel: Boolean
         }, 
         {
-            centerlaOffice: Boolean
+        centerlaOffice: Boolean
         }, 
         {
-            owenerShip: Boolean
+        owenerShip: Boolean
         }, 
         {
-            ownResponsiblity: Boolean
+        ownResponsiblity: Boolean
          }, 
         {
-            monthlySalary : Boolean 
+        monthlySalary : Boolean
          }, 
         {
-            flexiableworking: Boolean
+        flexiableworking: Boolean
         }, 
         {
         freedom: Boolean
-        
         }, 
         {
-            medicalAllowance: Boolean
-        
+        medicalAllowance: Boolean
         }, 
         {
-            careergrowth: Boolean
-        
+        careergrowth: Boolean
         },
         {
-            codeDays: Boolean
+        codeDays: Boolean
         },
         {
-            competitivesalary: Boolean
+        competitivesalary: Boolean
         }, 
         {
-            morethan25Days: Boolean
+        morethan25Days: Boolean
         }, 
         {
-            possiblityWorkfromHome: Boolean 
-    
+        possiblityWorkfromHome: Boolean
         }, 
         {
-            possiblityWorkfromdistance :  Boolean
+        possiblityWorkfromdistance : Boolean
         }, 
         {
-            newtechnique: Boolean
+        newtechnique: Boolean
         },
         {
-            healthInsurance: Boolean
+        healthInsurance: Boolean
 
         }, 
         {
-            stableworkingCondition: Boolean
+        stableworkingCondition: Boolean
         }, 
         {
-            toothInsurance: Boolean
+        toothInsurance: Boolean
             }, 
         {
-            penstion:Boolean 
-            
+        penstion: Boolean   
         }, 
         {
-            supportsystem : Boolean 
-    }, 
+        supportsystem : Boolean
+         }, 
         {
          developementpossiblity: Boolean
-    }
+     }
     ], 
     numberOfEmployee : Number,
     intrestfromCandidates: {type: String}, 

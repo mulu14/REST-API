@@ -14,6 +14,10 @@ exports.getAllcandidate =(req, res, next) =>{
                 return{
                     _id: candidate._id, 
                     account: candidate.account, 
+                    date: candidate.date.toISOString().split('T')[0],
+                    city: candidate.city,
+                    userId: candidate.userId,
+                    publishStatus: candidate.publishStatus,
                     salary: candidate.salary, 
                     headline: candidate.headline,
                     topSkills: candidate.topSkills, 
@@ -59,15 +63,19 @@ exports.getOneCandidate = (req, res, next) =>{
 
 
 exports.createCandidate =(req, res, next) => {
+    var now = new Date();
     const candidate = new Candidates({
     _id: mongoose.Types.ObjectId(),
     account: req.body.candidate.account, 
+    date: new Date(),
+    city: req.body.candidate.city,
+    userId: req.body.candidate.userId,
+    publishStatus: req.body.candidate.publishStatus, 
     salary: req.body.candidate.salary,
     headline: req.body.candidate.headline,
     topSkills: req.body.candidate.topSkills, 
     skills: req.body.candidate.skills, 
     benefits: req.body.candidate.benefits,
-   // publishInfo: req.body.candidate.publishInfo,
     workExperiences: req.body.candidate.workExperiences,
     projectExperiences: req.body.candidate.projectExperiences,
     educations: req.body.candidate.educations
