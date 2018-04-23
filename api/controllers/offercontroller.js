@@ -1,13 +1,13 @@
 const mongoose = require('mongoose'); 
 
-const Offers = require('./../model/offersmodel');
-const Companies = require('./../model/companymodel');
+const Offers = require('./../model/offermodel'); 
 
 
-exports.getAllOffers =(req, res, next) =>{
 
+
+exports.getoffers =(req, res, next) =>{
     Offers.find()
-    .select('_id, company, salary, bonses')
+    .populate('candidate', 'account')
     .populate('company', 'nameOfCompany')
     .exec()
     .then(data=>{
@@ -16,9 +16,11 @@ exports.getAllOffers =(req, res, next) =>{
             offers: data.map(offer =>{
                 return{
                     _id: offer._id, 
-                    company: offer.company, 
-                    salary: offer.salary, 
-                    bonses: offer.bonses,
+                    candidate: offer.candidate, 
+                    company: offer.company,
+                    offerstatus: offer.offerstatus,
+                    createdDate: offer.createdDate, 
+                    updatedDate: offer.updatedDate,
                     request: {
                         type: 'GET', 
                         url: 'http://localhost:8080/offers/' + offer._id
@@ -36,14 +38,14 @@ exports.getAllOffers =(req, res, next) =>{
   
 }
 
-exports.getOneOffer = (req, res, next) =>{
+exports.getsingleoffer = (req, res, next) =>{
     offerId = req.params.id; 
     Offers.findById(offerId)
     .exec()
     .then(data=>{
         res.status(200).json({
-            message: 'This is company offer', 
-            
+            message: 'Single Offer', 
+            offer: data    
         });
     })
     .catch(err =>{
@@ -54,29 +56,29 @@ exports.getOneOffer = (req, res, next) =>{
   
 }
 
-
-exports.createOffers =(req, res, next) => {
- // check if company is existed,
- //if not break the function 
+exports.createOffer =(req, res, next) => {
     const offer = new Offers({
     _id: mongoose.Types.ObjectId(),
+    createdDate: new Date(),
+    candidate: req.body.candidate, 
     company: req.body.company,
-    salary: req.body.salary, 
-    bonses : req.body.bonses
+    offerstatus: req.body.offerstatus
+    
     })
      offer.save()
      .then(result => {
-          console.log(result);
         res.status(201).json({
-        message: "Offer stored",
-        createdOrder: {
+        message: "new offer is created",
+        createdOffer: {
           _id: result._id,
-          salary: result.product,
-          bonses: result.quantity
+          createdDate: result.createdDate,
+          candidate: result.candidate,
+          company: result.company,
+          offerstatus: result.offerstatus
         },
         request: {
           type: "GET",
-          url: "http://localhost:8080/offers/" + result._id
+          url: "http://localhost:8080/candidates/" + result._id
         }
       });
     })
@@ -90,12 +92,9 @@ exports.createOffers =(req, res, next) => {
 
 
 
-
-
-
-exports.deleteOffers =(req, res, next) =>{
+exports.deleteOffer =(req, res, next) =>{
     offerId = req.params.id; 
-    Offers.remove({_id: offerId})
+    Candidates.remove({_id: offerId})
     .exec()
     .then(data=>{
         res.status(200).json(data);
@@ -108,13 +107,14 @@ exports.deleteOffers =(req, res, next) =>{
 
 }
 
-exports.updateOffers =(req, res, next)=>{
-    offerId = req.params.id; 
-    const updateOps = {}; 
-    Offers.update({_id: offerId}, {$set: {
+exports.updateOffer =(req, res, next)=>{
+    updateId = req.params.id; 
+    Offers.update({_id: updateId}, {$set: {
+        candidate: req.body.candidate, 
         company: req.body.company,
-        salary: req.body.salary, 
-        bonses: req.body.bonses
+        offerstatus: req.body.offerstatus,
+        updatedDate: new Date()
+      
     }})
     .exec()
     .then(data=>{

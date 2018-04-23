@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Candidates = require('./../model/candidatemodel');
 
 
+
 exports.getAllcandidate =(req, res, next) =>{
 
     Candidates.find()

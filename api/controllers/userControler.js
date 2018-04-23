@@ -155,7 +155,6 @@ exports.delete_users =(req, res, next) => {
 
 exports.updateUsers =(req, res, next) =>{
     userId = req.params.id; 
-    const updateOps = {}; 
     User.update({_id: userId}, {$set: {
         email: req.body.email, 
         password: req.body.password

@@ -3,11 +3,10 @@ const app = express();
 const morgon = require('morgan');
 const users = require('./api/routes/users'); 
 const candidates = require('./api/routes/candidates')
-const offers = require('./api/routes/offers')
 const companies = require('./api/routes/companies')
+const offers = require('./api/routes/offers'); 
 const bodyparser = require('body-parser')
 const mongoose = require('mongoose'); 
-
 
 
 //app.use('/uploads', express.static('uploads'));
@@ -28,8 +27,8 @@ app.use((req, res, next) =>{
 
 app.use('/users', users); 
 app.use('/candidates', candidates); 
+app.use('/companies', companies);
 app.use('/offers', offers); 
-app.use('/companies', companies)
 
 
 app.use((req, res, next) =>{
