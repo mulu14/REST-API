@@ -4,7 +4,6 @@ const Offers = require('./../model/offermodel');
 
 
 
-
 exports.getoffers =(req, res, next) =>{
     Offers.find()
     .populate('candidate', 'account')
@@ -19,7 +18,7 @@ exports.getoffers =(req, res, next) =>{
                     candidate: offer.candidate, 
                     company: offer.company,
                     offerstatus: offer.offerstatus,
-                    createdDate: offer.createdDate, 
+                    createdDate: offer.createdDate.toISOString().split('T')[0], 
                     updatedDate: offer.updatedDate,
                     request: {
                         type: 'GET', 

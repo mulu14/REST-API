@@ -46,7 +46,7 @@ exports.get_list_of_company = (req, res, next) =>{
                     date: company.date.toISOString().split('T')[0],
                     publishStatus: company.publishStatus,
                     numberOfEmployee: company.numberOfEmployee,
-                    benefitsList: [company.benefitsList], 
+                    benefitsList: company.benefitsList, 
                     intrestfromCandidates: company.intrestfromCandidates, 
                     image: company.image, 
                     companylogo: company.companylogo, 
