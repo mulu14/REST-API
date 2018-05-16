@@ -135,58 +135,53 @@ const companiesSchema = mongoose.Schema({
     benefitsList :  [
             {   id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number
+                code: Boolean
                
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number
+                code: Boolean
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number 
+                code: Boolean 
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number
+                code: Boolean
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number
+                code: Boolean
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number 
+                code:  Boolean
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number
+                code: Boolean
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number
+                code: Boolean
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number
+                code: Boolean
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number
-            },
-            {
-                id: mongoose.Schema.Types.ObjectId,
-                title: String,
-                code: Number
+                code: Boolean
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
@@ -196,7 +191,37 @@ const companiesSchema = mongoose.Schema({
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number
+                code: Boolean
+            },
+            {
+                id: mongoose.Schema.Types.ObjectId,
+                title: String,
+                code: Boolean
+            },
+            {
+                id: mongoose.Schema.Types.ObjectId,
+                title: String,
+                code: Boolean
+            },
+            {
+                id: mongoose.Schema.Types.ObjectId,
+                title: String,
+                code: Boolean
+            },
+            {
+                id: mongoose.Schema.Types.ObjectId,
+                title: String,
+                code: Boolean
+            },
+            {
+                id: mongoose.Schema.Types.ObjectId,
+                title: String,
+                code: Boolean
+            },
+            {
+                id: mongoose.Schema.Types.ObjectId,
+                title: String,
+                code:  Boolean
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
@@ -206,47 +231,22 @@ const companiesSchema = mongoose.Schema({
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number
+                code: Boolean
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number
+                code:  Boolean
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number
+                code:  Boolean
             },
             {
                 id: mongoose.Schema.Types.ObjectId,
                 title: String,
-                code: Number
-            },
-            {
-                id: mongoose.Schema.Types.ObjectId,
-                title: String,
-                code: Number
-            },
-            {
-                id: mongoose.Schema.Types.ObjectId,
-                title: String,
-                code: Number
-            },
-            {
-                id: mongoose.Schema.Types.ObjectId,
-                title: String,
-                code: Number
-            },
-            {
-                id: mongoose.Schema.Types.ObjectId,
-                title: String,
-                code: Number
-            },
-            {
-                id: mongoose.Schema.Types.ObjectId,
-                title: String,
-                code: Number
+                code: Boolean
             },
 
         ],
